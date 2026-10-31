@@ -10,33 +10,141 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ApproachRouteImport } from './routes/approach'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ContactUsRouteImport } from './routes/contact-us'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as HomeRouteImport } from './routes/home'
+import { Route as IndustriesRouteImport } from './routes/industries'
+import { Route as ServicesRouteImport } from './routes/services'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApproachRoute = ApproachRouteImport.update({
+  id: '/approach',
+  path: '/approach',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactUsRoute = ContactUsRouteImport.update({
+  id: '/contact-us',
+  path: '/contact-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeRoute = HomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndustriesRoute = IndustriesRouteImport.update({
+  id: '/industries',
+  path: '/industries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/approach': typeof ApproachRoute
+  '/contact': typeof ContactRoute
+  '/contact-us': typeof ContactUsRoute
+  '/faq': typeof FaqRoute
+  '/home': typeof HomeRoute
+  '/industries': typeof IndustriesRoute
+  '/services': typeof ServicesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/approach': typeof ApproachRoute
+  '/contact': typeof ContactRoute
+  '/contact-us': typeof ContactUsRoute
+  '/faq': typeof FaqRoute
+  '/home': typeof HomeRoute
+  '/industries': typeof IndustriesRoute
+  '/services': typeof ServicesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/approach': typeof ApproachRoute
+  '/contact': typeof ContactRoute
+  '/contact-us': typeof ContactUsRoute
+  '/faq': typeof FaqRoute
+  '/home': typeof HomeRoute
+  '/industries': typeof IndustriesRoute
+  '/services': typeof ServicesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/approach'
+    | '/contact'
+    | '/contact-us'
+    | '/faq'
+    | '/home'
+    | '/industries'
+    | '/services'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/approach'
+    | '/contact'
+    | '/contact-us'
+    | '/faq'
+    | '/home'
+    | '/industries'
+    | '/services'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/approach'
+    | '/contact'
+    | '/contact-us'
+    | '/faq'
+    | '/home'
+    | '/industries'
+    | '/services'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ApproachRoute: typeof ApproachRoute
+  ContactRoute: typeof ContactRoute
+  ContactUsRoute: typeof ContactUsRoute
+  FaqRoute: typeof FaqRoute
+  HomeRoute: typeof HomeRoute
+  IndustriesRoute: typeof IndustriesRoute
+  ServicesRoute: typeof ServicesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +156,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/approach': {
+      id: '/approach'
+      path: '/approach'
+      fullPath: '/approach'
+      preLoaderRoute: typeof ApproachRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact-us': {
+      id: '/contact-us'
+      path: '/contact-us'
+      fullPath: '/contact-us'
+      preLoaderRoute: typeof ContactUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home': {
+      id: '/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industries': {
+      id: '/industries'
+      path: '/industries'
+      fullPath: '/industries'
+      preLoaderRoute: typeof IndustriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ApproachRoute: ApproachRoute,
+  ContactRoute: ContactRoute,
+  ContactUsRoute: ContactUsRoute,
+  FaqRoute: FaqRoute,
+  HomeRoute: HomeRoute,
+  IndustriesRoute: IndustriesRoute,
+  ServicesRoute: ServicesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,0 +1,5 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { SiteLayout, PageHeading, pageHead } from '@/components/site-layout';
+import { originalContent } from '@/lib/site-content';
+export const Route=createFileRoute('/services')({head:()=>pageHead('Engineering Services','Explore product design, reverse engineering, DFM, precision mould design, flow analysis and manufacturing support from REDECOS.'),component:Page});
+function Page(){return <SiteLayout><PageHeading label="OUR SERVICES" title="From the first idea to the final tool." description={originalContent.services[1] ?? "Precision engineering and design services."}/><div className="container service-index">{originalContent.serviceSections.map((s,i)=><a key={s.title} href={`#service-${i+1}`}>0{i+1} <span>{s.title}</span></a>)}</div>{originalContent.serviceSections.map((s,i)=><section className="section detail-section" id={`service-${i+1}`} key={s.title}><div className="container service-detail"><span className="detail-number">0{i+1}</span><div><h2>{s.title}</h2>{s.lines.map((p,n)=>p.length<160?<div key={n} className="service-spec">{p}</div>:<p key={n}>{p}</p>)}</div></div></section>)}</SiteLayout>}
