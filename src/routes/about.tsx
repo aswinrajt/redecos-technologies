@@ -1,0 +1,5 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { SiteLayout, PageHeading, SectionLabel, pageHead } from '@/components/site-layout';
+import { originalContent } from '@/lib/site-content';
+export const Route=createFileRoute('/about')({head:()=>pageHead('About Us','Meet the REDECOS team: precision tooling and mould design professionals with over a decade of manufacturing experience.'),component:Page});
+function Page(){return <SiteLayout><PageHeading label="ABOUT REDECOS" title="Engineering grounded in experience." description="Delivering the Real Design. Manufacturing knowledge at the heart of every project."/><section className="section"><div className="container prose-layout"><SectionLabel number="01">WHO WE ARE</SectionLabel><h2>Precision tooling. Practical solutions.</h2>{originalContent.home.slice(1,3).map(p=><p key={p}>{p}</p>)}<h2>Why REDECOS?</h2>{originalContent.home.slice(4,7).map(p=><p key={p}>{p}</p>)}<h2>From an idea to a real product.</h2>{originalContent.home.slice(16,19).map(p=><p key={p}>{p}</p>)}<blockquote>Software is only a tool. It's our people that provide the real solutions.</blockquote></div></section></SiteLayout>}
