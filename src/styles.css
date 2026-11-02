@@ -448,3 +448,12 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
 @media(max-width:640px){.engineering-heading::after{width:170px;height:170px;right:-90px;top:10%;opacity:.45;}.motion-detail .detail-number{padding-bottom:12px;}.motion-prose h2{padding-left:16px;}}
 @media(prefers-reduced-motion:reduce){.reveal,.motion-item{opacity:1;transform:none;}.engineering-heading::after{animation:none;}.motion-prose h2::before,.motion-detail .detail-number::after{transform:none;}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*,*::before,*::after{transition:none!important;animation:none!important;}}
+/* Cursor effects: soft glow + trailing ring, fine pointers only, reduced-motion safe. */
+.cursor-glow,.cursor-ring{position:fixed;left:0;top:0;pointer-events:none;z-index:60;opacity:0;transition:opacity .4s ease,scale .25s ease;will-change:transform;}
+.cursor-glow{width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,color-mix(in oklab,var(--primary) 14%,transparent) 0%,transparent 65%);}
+.cursor-ring{width:34px;height:34px;border-radius:50%;border:1.5px solid color-mix(in oklab,var(--primary) 70%,transparent);}
+.cursor-ring::after{content:'';position:absolute;left:50%;top:50%;width:4px;height:4px;border-radius:50%;background:var(--primary);transform:translate(-50%,-50%);}
+body.cursor-active .cursor-glow,body.cursor-active .cursor-ring{opacity:1;}
+body.cursor-hover .cursor-ring{scale:1.7;border-color:var(--primary);}
+body.cursor-hover .cursor-glow{scale:.75;}
+@media(pointer:coarse),(prefers-reduced-motion:reduce){.cursor-glow,.cursor-ring{display:none;}}
