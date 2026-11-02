@@ -7,8 +7,20 @@ import logo from '@/assets/redecos-logo.png';
 
 const navigation = [{name:'Home',to:'/'},{name:'About Us',to:'/about'},{name:'Services',to:'/services'},{name:'Industries',to:'/industries'},{name:'Our Approach',to:'/approach'},{name:'FAQ',to:'/faq'},{name:'Contact Us',to:'/contact-us'}] as const;
 export function SiteLayout({children}: {children:ReactNode}) {
- const [open,setOpen]=useState(false);
+  const [open,setOpen]=useState(false);
  const path=useRouterState({select:s=>s.location.pathname});
+  useEffect(()=>{
+    if(window.matchMedia('(pointer: coarse)').matches||window.matchMedia('(prefers-reduced-motion: reduce)').matches){return;}
+    const glow=document.querySelector<HTMLElement>('.cursor-glow');
+    const ring=document.querySelector<HTMLElement>('.cursor-ring');
+    if(!glow||!ring){return;}
+    let raf=0,tx=innerWidth/2,ty=innerHeight/2,rx=tx,ry=ty;
+    const move=(e:PointerEvent)=>{tx=e.clientX;ty=e.clientY;document.body.classList.add('cursor-active');};
+    const loop=()=>{rx+=(tx-rx)*.16;ry+=(ty-ry)*.16;glow.style.transform=`translate(${tx}px,${ty}px) translate(-50%,-50%)`;ring.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;raf=requestAnimationFrame(loop);};
+    const over=(e:PointerEvent)=>{const t=(e.target as HTMLElement|null)?.closest('a,button,[role="button"]');document.body.classList.toggle('cursor-hover',!!t);};
+    addEventListener('pointermove',move,{passive:true});addEventListener('pointerover',over,{passive:true});raf=requestAnimationFrame(loop);
+    return()=>{removeEventListener('pointermove',move);removeEventListener('pointerover',over);cancelAnimationFrame(raf);document.body.classList.remove('cursor-active','cursor-hover');};
+  },[]);
   useEffect(()=>{
     if(!('IntersectionObserver' in window)){return;}
     const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}}),{threshold:.08});
