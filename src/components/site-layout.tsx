@@ -117,7 +117,8 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         <div className="container header-inner">
           <Link to="/" className="brand">
             <img src={logo} alt="REDECOS logo" width="60" height="48" />
-            <span className="brand-text">
+            <span className="brand-title brand-desktop">REDECOS TECHNOLOGIES</span>
+            <span className="brand-text brand-mobile">
               <span className="brand-title">REDECOS</span>
               <span className="brand-sub">TECHNOLOGIES</span>
             </span>
