@@ -1,9 +1,9 @@
-import { Link, useRouterState } from '@tanstack/react-router';
-import { useEffect, useState, type ReactNode } from 'react';
-import { ThemeToggle } from '@/components/theme-toggle';
-import { ArrowUpRight, Menu, X, ArrowRight, MessageCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import logo from '@/assets/redecos-logo.png';
+import { Link, useRouterState } from "@tanstack/react-router";
+import { useEffect, useState, type ReactNode } from "react";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { ArrowUpRight, Menu, X, ArrowRight, MessageCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import logo from "@/assets/redecos-logo.png";
 
 const navigation = [
   { name: "Home", to: "/" },
@@ -260,6 +260,43 @@ export function SiteLayout({ children }: { children: ReactNode }) {
     </>
   );
 }
-export function SectionLabel({ number, children }: { number: string; children: ReactNode }) { return <div className="section-label"><span>{number}</span><span>{children}</span><i /></div>; }
-export function PageHeading({ label, title, description }: { label: string; title: string; description: string }) { return <section className="page-heading"><div className="container"><span className="eyebrow">{label}</span><h1>{title}</h1><p>{description}</p></div></section>; }
-export function pageHead(title: string, description: string) { return { meta: [{ title: `${title} | REDECOS Technologies` }, { name: 'description', content: description }, { property: 'og:title', content: `${title} | REDECOS Technologies` }, { property: 'og:description', content: description }, { property: 'og:type', content: 'website' }, { name: 'twitter:card', content: 'summary_large_image' }] }; }
+export function SectionLabel({ number, children }: { number: string; children: ReactNode }) {
+  return (
+    <div className="section-label">
+      <span>{number}</span>
+      <span>{children}</span>
+      <i />
+    </div>
+  );
+}
+export function PageHeading({
+  label,
+  title,
+  description,
+}: {
+  label: string;
+  title: string;
+  description: string;
+}) {
+  return (
+    <section className="page-heading">
+      <div className="container">
+        <span className="eyebrow">{label}</span>
+        <h1>{title}</h1>
+        <p>{description}</p>
+      </div>
+    </section>
+  );
+}
+export function pageHead(title: string, description: string) {
+  return {
+    meta: [
+      { title: `${title} | REDECOS Technologies` },
+      { name: "description", content: description },
+      { property: "og:title", content: `${title} | REDECOS Technologies` },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  };
+}
