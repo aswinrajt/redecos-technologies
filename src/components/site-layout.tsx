@@ -33,22 +33,32 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       tx = innerWidth / 2,
       ty = innerHeight / 2,
       rx = tx,
-      ry = ty;
+      ry = ty,
+      isActive = false,
+      isHovering = false;
+
     const move = (e: PointerEvent) => {
       tx = e.clientX;
       ty = e.clientY;
-      document.body.classList.add("cursor-active");
+      if (!isActive) {
+        isActive = true;
+        document.body.classList.add("cursor-active");
+      }
     };
     const loop = () => {
       rx += (tx - rx) * 0.16;
       ry += (ty - ry) * 0.16;
-      glow.style.transform = `translate(${tx}px,${ty}px) translate(-50%,-50%)`;
-      ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+      glow.style.transform = `translate3d(${tx}px,${ty}px,0) translate(-50%,-50%)`;
+      ring.style.transform = `translate3d(${rx}px,${ry}px,0) translate(-50%,-50%)`;
       raf = requestAnimationFrame(loop);
     };
     const over = (e: PointerEvent) => {
       const t = (e.target as HTMLElement | null)?.closest('a,button,[role="button"]');
-      document.body.classList.toggle("cursor-hover", !!t);
+      const nextHover = !!t;
+      if (nextHover !== isHovering) {
+        isHovering = nextHover;
+        document.body.classList.toggle("cursor-hover", nextHover);
+      }
     };
     addEventListener("pointermove", move, { passive: true });
     addEventListener("pointerover", over, { passive: true });
@@ -84,7 +94,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
     const targets =
       path === "/about"
         ? document.querySelectorAll(
-          "main .prose-layout > h2, main .prose-layout > p, main blockquote",
+          "main .about-feature-row, main .prose-layout > h2, main .prose-layout > p, main blockquote, main .about-quote-container",
         )
         : path === "/services"
           ? document.querySelectorAll(
